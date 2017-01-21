@@ -1,4 +1,5 @@
-# tinyfiledialogs-rs
+tinyfiledialogs-rs
+==================
 
 This is a high-level Rust binding to the excellent [tinyfiledialogs library](https://sourceforge.net/projects/tinyfiledialogs/)
 by Guillaume Vareille. The source for the C library is included in
@@ -9,5 +10,7 @@ all non-Rust users of the library.
 
 To use this library, add this to the `dependencies` section in `Cargo.toml`:
 ```
-tinyfiledialogs = "2.0"
+tinyfiledialogs = "3.0"
 ```
+
+See the full docs at [docs.rs](https://docs.rs/tinyfiledialogs)
