@@ -102,8 +102,7 @@ fn save_file_dialog_impl(title: &str, path: &str, filter: Option<(&[&str], &str)
     let save_dialog_path = CString::new(path).unwrap();
     let save_dialog_des = CString::new(filter.map_or("", |f| f.1)).unwrap();
 
-    let filter_patterns =
-    filter.map_or(vec![], |f| f.0.iter().map(|s| CString::new(*s).unwrap()).collect());
+    let filter_patterns = filter.map_or(vec![], |f| f.0.iter().map(|s| CString::new(*s).unwrap()).collect());
     let ptr_filter_patterns = filter_patterns.iter().map(|c| c.as_ptr()).collect::<Vec<*const c_char>>();
 
     let c_file_name = unsafe {
@@ -133,10 +132,8 @@ fn open_file_dialog_impl(title: &str, path: &str, filter: Option<(&[&str], &str)
     let open_dialog_path = CString::new(path).unwrap();
     let open_dialog_des = CString::new(filter.map_or("", |f| f.1)).unwrap();
 
-    let filter_patterns =
-    filter.map_or(vec![], |f| f.0.iter().map(|s| CString::new(*s).unwrap()).collect());
-    let ptr_filter_patterns =
-    filter_patterns.iter().map(|c| c.as_ptr()).collect::<Vec<*const c_char>>();
+    let filter_patterns = filter.map_or(vec![], |f| f.0.iter().map(|s| CString::new(*s).unwrap()).collect());
+    let ptr_filter_patterns = filter_patterns.iter().map(|c| c.as_ptr()).collect::<Vec<*const c_char>>();
 
     let c_file_name = unsafe {
         ffi::tinyfd_openFileDialog(
@@ -149,17 +146,14 @@ fn open_file_dialog_impl(title: &str, path: &str, filter: Option<(&[&str], &str)
     };
 
     if !c_file_name.is_null() {
-        let result = unsafe {
-            CStr::from_ptr(c_file_name).to_string_lossy().into_owned()
-        };
+        let result = unsafe { CStr::from_ptr(c_file_name).to_string_lossy().into_owned() };
+
         Some(if multi {
             result.split('|').map(|s| s.to_owned()).collect()
         } else {
             vec![result]
         })
-    } else {
-        None
-    }
+    } else { None }
 }
 
 pub fn open_file_dialog(title: &str, path: &str, filter: Option<(&[&str], &str)>) -> Option<String> {
@@ -179,12 +173,8 @@ pub fn select_folder_dialog(title: &str, path: &str) -> Option<String> {
     };
 
     if !folder.is_null() {
-        unsafe {
-            Some(CStr::from_ptr(folder).to_string_lossy().into_owned())
-        }
-    } else {
-        None
-    }
+        unsafe { Some(CStr::from_ptr(folder).to_string_lossy().into_owned()) }
+    } else { None }
 }
 
 #[cfg(not(windows))]
@@ -212,12 +202,8 @@ pub fn list_dialog(title: &str, columns: &[&str], cells: Option<&[&str]>) -> Opt
     };
 
     if !dialog.is_null() {
-        unsafe {
-            Some(CStr::from_ptr(dialog).to_string_lossy().into_owned())
-        }
-    } else {
-        None
-    }
+        unsafe { Some(CStr::from_ptr(dialog).to_string_lossy().into_owned()) }
+    } else { None }
 }
 
 #[cfg(windows)]
