@@ -3,6 +3,7 @@ authors = ["Guillaume Vareille <vareille@users.sourceforge.net>", "Josh Matthews
 build = "build.rs"
 categories = ["api-bindings", "gui"]
 description = "High-level Rust binding for the tinyfiledialogs C library."
+documentation = "https://docs.rs/tinyfiledialogs"
 keywords = ["dialog", "ui", "windows", "unix"]
 license = "zlib-acknowledgement"
 name = "tinyfiledialogs"
