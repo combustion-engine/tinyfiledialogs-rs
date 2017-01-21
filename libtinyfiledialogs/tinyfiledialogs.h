@@ -1,10 +1,14 @@
-/*
- _________
-/         \ tinyfiledialogs.h v2.5.9 [September 21, 2016] zlib licence
-|tiny file| Unique header file of "tiny file dialogs" created [November 9, 2014]
-| dialogs | Copyright (c) 2014 - 2016 Guillaume Vareille http://ysengrin.com
-\____  ___/ http://tinyfiledialogs.sourceforge.net
-     \|           	                     mailto:tinyfiledialogs@ysengrin.com
+/*_________
+ /         \ tinyfiledialogs.h v2.7.2 [November 23, 2016] zlib licence
+ |tiny file| Unique header file created [November 9, 2014]
+ | dialogs | Copyright (c) 2014 - 2016 Guillaume Vareille http://ysengrin.com
+ \____  ___/ http://tinyfiledialogs.sourceforge.net
+      \|
+                                git://git.code.sf.net/p/tinyfiledialogs/code
+	  ______________________________________________________
+	 |                                                      |
+	 | direct CONTACT:  mailto:tinyfiledialogs@ysengrin.com |
+	 |______________________________________________________|
 
 A big thank you to Don Heyse http://ldglite.sf.net for
                    his code contributions, bug corrections & thorough testing!
@@ -16,7 +20,7 @@ Please
 	- if you are including tiny file dialogs,
 	  I'll be happy to add your link to the list of projects using it.
 	- If you are using it on different hardware / OS / compiler.
-	2) Be the first to leave a review on Sourceforge. Thanks.
+	2) leave a review on Sourceforge. Thanks.
 
 tiny file dialogs (cross-platform C C++)
 InputBox PasswordBox MessageBox ColorPicker
@@ -39,13 +43,13 @@ NO MAIN LOOP
 
 The dialogs can be forced into console mode
 
-Windows [MBCS + UTF-8 + UTF-16]
+Windows (XP to 10) [ASCII + MBCS + UTF-8 + UTF-16]
 - native code & some vbs create the graphic dialogs
 - enhanced console mode can use dialog.exe from
 http://andrear.altervista.org/home/cdialog.php
 - basic console input
 
-Unix [UTF-8] (command line call attempts)
+Unix (command line call attempts) [ASCII + UTF-8]
 - applescript
 - zenity / matedialog
 - kdialog
@@ -56,9 +60,11 @@ Unix [UTF-8] (command line call attempts)
 The same executable can run across desktops & distributions
 
 tested with C & C++ compilers
-on VisualStudio MinGW Mac Linux Bsd Solaris Minix Raspbian C# fortran (iso_c)
+on VisualStudio MinGW Mac Linux Bsd Solaris Minix Raspbian
 using Gnome Kde Enlightenment Mate Cinnamon Unity
 Lxde Lxqt Xfce WindowMaker IceWm Cde Jds OpenBox
+
+bindings for LUA and C# dll
 
 - License -
 
@@ -102,7 +108,7 @@ extern char tinyfd_version[8]; /* contains tinyfd current version number */
 #ifdef _WIN32
 /* for UTF-16 use the functions at the end of this files */
 extern int tinyfd_winUtf8; /* 0 (default) or 1 */
-/* on windows string char can be 0:MBSC or 1:UTF-8 (work in progress)
+/* on windows string char can be 0:MBSC or 1:UTF-8
 unless your code is really prepared for UTF-8 on windows, leave this on MBSC. */
 #endif
 
@@ -249,10 +255,10 @@ char const * tinyfd_arrayDialog(
 /*
 - This is not for android nor ios.
 - The code is pure C, perfectly compatible with C++.
-- the utf-16 prototypes are in the header file
-- The API is Fortran ISO_C_BINDING compliant
+- the windows utf-16 prototypes are in the header file
+- windows is fully supported from XP to 10 (maybe even older versions)
 - C# via dll, see example file
-- OSX supported from 10.4 to 10.11
+- OSX supported from 10.4 to 10.11 (maybe even older versions)
 - Avoid using " and ' in titles and messages.
 - There's one file filter only, it may contain several patterns.
 - If no filter description is provided,
