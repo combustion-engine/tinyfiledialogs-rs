@@ -2,8 +2,6 @@
 
 #![allow(dead_code, non_camel_case_types, non_upper_case_globals, non_snake_case)]
 
-//use libc;
-
 #[link(name = "tinyfiledialogs", kind = "static")]
 extern "C" {
     pub static mut tinyfd_version: [::std::os::raw::c_char; 8usize];
@@ -58,11 +56,11 @@ extern "C" {
                                -> *const ::std::os::raw::c_char;
 
     #[cfg(not(windows))]
-    fn tinyfd_arrayDialog(aTitle: *const c_char,
-                          aNumOfColumns: c_int,
-                          aColumns: *const *const c_char,
-                          aNumOfRows: c_int,
-                          aCells: *const *const c_char) -> *const c_char;
+    pub fn tinyfd_arrayDialog(aTitle: *const ::std::os::raw::c_char,
+                              aNumOfColumns: ::std::os::raw::c_int,
+                              aColumns: *const *const ::std::os::raw::c_char,
+                              aNumOfRows: ::std::os::raw::c_int,
+                              aCells: *const *const ::std::os::raw::c_char) -> *const ::std::os::raw::c_char;
 
     /*
     pub fn tinyfd_messageBoxW(aTitle: *const libc::wchar_t,
