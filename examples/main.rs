@@ -1,30 +1,30 @@
-extern crate tinyfiledialogs;
+extern crate tinyfiledialogs as tfd;
 
-use tinyfiledialogs::{DefaultColorValue, MessageBox, Icon, BoxButton};
+use tfd::{DefaultColorValue, MessageBox, Icon, BoxButton};
 
 fn main() {
-    let choice = tinyfiledialogs::message_box(MessageBox::YesNo, "hello", "yes or no?",
-                                              // Icon
-                                              Some(Icon::Question),
-                                              // Default button
-                                              Some(BoxButton::CancelNo));
+    let choice = tfd::message_box(MessageBox::YesNo, "hello", "yes or no?",
+                                  // Icon
+                                  Some(Icon::Question),
+                                  // Default button
+                                  Some(BoxButton::CancelNo));
 
-    let user_input = tinyfiledialogs::input_box("Enter user name", "Username:", "");
+    let user_input = tfd::input_box("Enter user name", "Username:", None);
 
-    let save_file = tinyfiledialogs::save_file_dialog("Save", "password.txt");
+    let save_file = tfd::save_file_dialog("Save", "password.txt");
 
-    let open_file = tinyfiledialogs::open_file_dialog("Open", "password.txt", None);
+    let open_file = tfd::open_file_dialog("Open", "password.txt", None);
 
-    let folder = tinyfiledialogs::select_folder_dialog("Select folder", "");
+    let folder = tfd::select_folder_dialog("Select folder", "");
 
-    let color = tinyfiledialogs::color_chooser_dialog("Choose a Color", DefaultColorValue::Hex("#FF0000"));
+    let color = tfd::color_chooser_dialog("Choose a Color", DefaultColorValue::Hex("#FF0000"));
 
     #[cfg(not(windows))]
-    let list = tinyfiledialogs::list_dialog("Test Dialog",
-                                            &["Id", "Name"],
-                                            Some(&["471", "Donald Duck",
-                                                "1143", "Chris P. Bacon",
-                                                "6509", "Moon Doge"]));
+    let list = tfd::list_dialog("Test Dialog",
+                                &["Id", "Name"],
+                                Some(&["471", "Donald Duck",
+                                    "1143", "Chris P. Bacon",
+                                    "6509", "Moon Doge"]));
 
     println!("Choice {:?}", choice);
     println!("User input {:?}", user_input);
